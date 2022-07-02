@@ -20,7 +20,6 @@ class StaffSession {
 
             switch (Choice) {
                 case "1":
-                    System.out.println("This is Add User");
                     addUser();
                     break;
                 case "2":
@@ -51,6 +50,8 @@ class StaffSession {
             String userName = input.next();
             System.out.println("Enter User's Account Number");
             String accNo = input.next();
+            System.out.println("Enter User's intial Amount");
+            String intialAmount = input.next();
             System.out.println("Enter User's password");
             String password = input.next();
             sc = new Scanner(userFilePath);
@@ -60,6 +61,11 @@ class StaffSession {
             }
             newContent = oldContent+"userName-"+userName+",password-"+password+","+accNo;
             writer = new FileWriter(userFilePath);
+            File newFile = new File("users/"+accNo+".txt");
+            newFile.createNewFile();
+            FileWriter newFileWrite = new FileWriter(newFile);
+            newFileWrite.write("Your Available Balance is "+intialAmount);
+            newFileWrite.close();
             writer.write(newContent);
             writer.close();
         } catch (FileNotFoundException e) {
